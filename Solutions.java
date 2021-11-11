@@ -7,6 +7,11 @@ public Class Solutions {
 	 */
 	public static class Solution1 {
     /**
+		 * nextleft() is to find the next min value.
+		 * Starting from min of all, if the value is negative,
+		 * check nums[i-1], if nums[i-1] doesn't exist, it means there is no negative numbers, then go from nums[0] to nums[n],
+		 * try to find the min positive number.
+		 * If the starting value(min of all) is positive, check nums[i+1].
      * @param nums: the input array
      * @param target: the target number
      * @return: return the target pair
@@ -24,7 +29,10 @@ public Class Solutions {
             if (nums[i] >= 0) return i;
         return -1;
     }
-    
+
+		/**
+		 * Same as nextleft()
+		 */
     public int nextright(int right, int[] nums){
         int n = nums.length;
         if (nums[right] > 0){
@@ -38,7 +46,12 @@ public Class Solutions {
             if (nums[i] <= 0) return i;
         return -1;
     }
-    
+
+		/**
+		 * First, go through the array and find out the min value and max value.
+		 * Second, use nextleft and nextright to find the min and max value.
+		 * Third, compare the sum of min and max with target.
+		 */
     public List<List<Integer>> twoSumVII(int[] nums, int target) {
         // write your code here
         int n = nums.length;
