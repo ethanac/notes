@@ -1,11 +1,8 @@
+
 /**
- * Java code
+ * Two sums VII
  */
-public Class Solutions {
-	/**
-	 * Two sums VII
-	 */
-	public static class Solution1 {
+public static class SolutionTwoSummVII {
     /**
 		 * nextleft() is to find the next min value.
 		 * Starting from min of all, if the value is negative,
@@ -86,5 +83,4 @@ public Class Solutions {
         }
         return ans;
     }
-}
 }
