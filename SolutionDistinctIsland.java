@@ -1,3 +1,8 @@
+/**
+ * 1. Using relative postion to first dot or root dot describe an island dot
+ * 2. Using Set to eliminate duplicates
+ * 3. DFS is cleaner than BFS
+ */
 public class SolutionDistinctIsland {
     /**
      * @param grid: a list of lists of integers
