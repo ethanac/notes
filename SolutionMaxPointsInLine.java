@@ -16,7 +16,7 @@ public class SolutionMaxPointsInLine {
     public  int maxPoints(Point[] points) {
         if (points == null || points.length == 0) {
             return 0;
-        }  
+        }
 
         HashMap<Double, Integer> map=new HashMap<Double, Integer>();
         int max = 1;
@@ -42,7 +42,7 @@ public class SolutionMaxPointsInLine {
 
                 // if the line through two points are parallel to y coordinator, then K(slop) is
                 // Integer.MAX_VALUE
-                double key=points[j].x - points[i].x == 0 ?
+                double key = points[j].x - points[i].x == 0 ?
                     Integer.MAX_VALUE :
                     0.0 + (double)(points[j].y - points[i].y) / (double)(points[j].x - points[i].x);
 
