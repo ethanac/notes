@@ -17,49 +17,50 @@ public class SolutionNumOfQueen {
      * results store all of the chessboards
      * cols store the column indices for each row
      */
-    private void search(List<List<String>> results,
-                        List<Integer> cols,
-                        int n) {
-        if (cols.size() == n) {
-            results.add(drawChessboard(cols));
-            return;
-        }
+     private void search(List<List<String>> results, List<Integer> cols, int n) {
+         // Index of cols is the row number, value of cols element is the col number.
+         if(cols.size() == n) {
+             //draw chess board
+             results.add(drawChessBoard(cols));
+             return;
+         }
 
-        for (int colIndex = 0; colIndex < n; colIndex++) {
-            if (!isValid(cols, colIndex)) {
-                continue;
-            }
-            cols.add(colIndex);
-            search(results, cols, n);
-            cols.remove(cols.size() - 1);
-        }
-    }
+         for(int colNum = 0; colNum < n; colNum++) {
+             if(!isValid(cols, colNum)) continue; //if current pos is invalid, continue.
 
-    private List<String> drawChessboard(List<Integer> cols) {
-        List<String> chessboard = new ArrayList<>();
-        for (int i = 0; i < cols.size(); i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < cols.size(); j++) {
-                sb.append(j == cols.get(i) ? 'Q' : '.');
-            }
-            chessboard.add(sb.toString());
-        }
-        return chessboard;
-    }
+             cols.add(colNum); //i is the column index;
+             search(results, cols, n);
+             cols.remove(cols.size()-1); // remove the col added one by one to clear the list.
+         }
+     }
 
-    private boolean isValid(List<Integer> cols, int column) {
-        int row = cols.size();
-        for (int rowIndex = 0; rowIndex < cols.size(); rowIndex++) {
-            if (cols.get(rowIndex) == column) {
-                return false;
-            }
-            if (rowIndex + cols.get(rowIndex) == row + column) {
-                return false;
-            }
-            if (rowIndex - cols.get(rowIndex) == row - column) {
-                return false;
-            }
-        }
-        return true;
-    }
+     /**
+      * How to validate:
+      * 1. Same row index: no.
+      * 2. Row index + col index == current row index + current col index: no.
+      * 3. Row index - col index == current row index - current col index: no.
+      */
+     private boolean isValid(List<Integer> cols, int colNum) {
+         int numOfRow = cols.size();
+         //numOfRow means current row number
+         for(int rowIndex = 0; rowIndex < numOfRow; rowIndex++) {
+             if(cols.get(rowIndex) == colNum) return false;
+             if(rowIndex + cols.get(rowIndex) == numOfRow + colNum) return false;
+             if(rowIndex - cols.get(rowIndex) == numOfRow - colNum) return false;
+         }
+         return true;
+     }
+
+     private List<String> drawChessBoard(List<Integer> cols) {
+         List<String> board = new ArrayList<>();
+         for(int i = 0; i < cols.size(); i++) {
+             StringBuilder row = new StringBuilder();
+             for(int j = 0; j < cols.size(); j++) {
+                 String s = cols.get(i) == j ? "Q" : ".";
+                 row.append(s);
+             }
+             board.add(row.toString());
+         }
+         return board;
+     }
 }
